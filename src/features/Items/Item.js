@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { addItem } from "./ItemSlice";
+import { addItem, changeText } from "./ItemSlice";
 
 const selectItemById = (state, itemId) => {
   return state.item.itemList.find((item) => (item.id = itemId));
@@ -13,9 +13,17 @@ export default function Item({ id }) {
   const contentCurrentItem = currentItem.content;
   const currentId = currentItem.id;
 
-  const [text, setText] = useState(contentCurrentItem);
+  //do i need local state here? probs not
+  // const [text, setText] = useState(contentCurrentItem);
 
-  const handleChange = (e) => setText(e.target.value);
+  // const handleChange = (e) => setText(e.target.value);
+
+  const handleChange = (e) => {
+    // console.log(currentId);
+    console.log(e.target.value);
+    // setText(e.target.value);
+    dispatch(changeText({ content: e.target.value, currentId: currentId }));
+  };
 
   const dispatch = useDispatch();
 
@@ -28,6 +36,7 @@ export default function Item({ id }) {
 
   return (
     <input
+      className="item"
       onKeyDown={handleEnter}
       onChange={handleChange}
       value={contentCurrentItem}

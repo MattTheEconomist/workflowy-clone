@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 export const itemSlice = createSlice({
   name: "item",
@@ -20,19 +20,27 @@ export const itemSlice = createSlice({
 
   reducers: {
     addItem: (state, action) => {
-      // const content = action.payload;
       const { content, parentId } = action.payload;
       const newItem = {
         id: state.idCount,
         content: content,
         parentId: parentId,
       };
+
       state.itemList = [...state.itemList, newItem];
       state.idCount += 1;
+    },
+
+    changeText: (state, action) => {
+      const { content, currentId } = action.payload;
+
+      state.itemList.find(
+        (current) => current.id === currentId
+      ).content = content;
     },
   },
 });
 
 export default itemSlice.reducer;
 
-export const { incrementCounter, addItem } = itemSlice.actions;
+export const { incrementCounter, addItem, changeText } = itemSlice.actions;

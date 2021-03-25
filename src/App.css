@@ -25,3 +25,7 @@
 body {
   background-color: rgb(197, 194, 194);
 }
+
+.item {
+  width: 500px;
+}
