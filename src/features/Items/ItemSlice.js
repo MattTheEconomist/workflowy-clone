@@ -19,23 +19,37 @@ export const itemSlice = createSlice({
   },
 
   reducers: {
+    // addItem: (state, action) => {
+    //   //   console.log("disptached");
+    //   state.idCount += 1;
+
+    //   //   you need to get the parent id from the payload
+    //   //   const { content, parentId } = action.payload;
+    //   const content = action.payload;
+
+    //   const newItem = {
+    //     id: state.idCount,
+    //     content: content,
+    //     parentId: state.idCount,
+    //   };
+    //   return [...state.itemList];
+    //   // return [...state.itemList, newItem];
+    //   // return [...state, newItem];
+    //   // return state.itemList.push(newItem);
+    // },
+
     addItem: (state, action) => {
-      //   console.log("disptached");
-      state.idCount += 1;
-
-      //   //   you need to get the parent id from the payload
-      //   //   const { content, parentId } = action.payload;
-      //   const content = action.payload;
-
-      //   const newItem = {
-      //     id: state.idCount,
-      //     content: content,
-      //     parentId: state.idCount,
-      //   };
-      //   return [...state.item.itemList, newItem];
-    },
-    incrementCounter: (state) => {
-      state.idCount += 1;
+      const content = action.payload;
+      const newItem = {
+        id: state.idCount,
+        content: content,
+        parentId: state.idCount,
+      };
+      // return [...state.itemList];
+      state.itemList = [...state.itemList, newItem];
+      // return [...state.itemList, newItem];
+      // return [...state, newItem];
+      // return state.itemList.push(newItem);
     },
   },
 });
