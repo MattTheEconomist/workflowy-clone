@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { incrementCounter, addItem } from "./ItemSlice";
+import { addItem } from "./ItemSlice";
 
 export function InputField() {
   const [text, setText] = useState("");
@@ -11,15 +11,10 @@ export function InputField() {
 
   const handleEnter = (e) => {
     const trimmedText = text.trim();
-    // if (e.key === "Enter" && trimmedText) {
-    if (e.which === 13 && trimmedText) {
+    // if (e.which === 13 && trimmedText) {
+    if (e.key === "Enter" && trimmedText) {
       console.log("triggerd from component", trimmedText);
-      //   dispatch(addItem(state, trimmedText));
-      //   dispatch({ type: "addItem", payload: trimmedText });
-      //   dispatch({ type: "incrementCounter" });
 
-      //THIS WORKS!
-      //   dispatch(incrementCounter());
       dispatch(addItem(trimmedText));
       setText("");
     }

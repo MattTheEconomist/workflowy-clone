@@ -7,18 +7,17 @@ import { useSelector, shallowEqual } from "react-redux";
 export function ItemList() {
   const allItems = useSelector((state) => state.item.itemList);
 
-  //   console.log(allItems);
-
   const renderedListItems = allItems.map((currentItem) => {
-    // return <Item key={`keyId${currentItem.id}`} content={currentItem.content} />;
-    // console.log("from parent", currentItem.id);
-    return <Item key={currentItem.id} id={currentItem.id} />;
+    return (
+      <li key={`li ${currentItem.id}`}>
+        <Item key={currentItem.id} id={currentItem.id} />
+      </li>
+    );
   });
 
   return (
     <>
-      <div>{renderedListItems}</div>
-      <div>i'm a placeholder</div>
+      <div key={`div items`}>{renderedListItems}</div>
     </>
   );
 }
