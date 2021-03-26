@@ -7,6 +7,10 @@ const store = configureStore({
     // counter: counterReducer,
     item: itemReducer,
   },
+  // middlewares: [itemTreeUpdate],
+  // middleware: mid,
+  // middlewares: itemTreeUpdate,
+  // middleware?: ((getDefaultMiddleware: CurriedGetDefaultMiddleware<S>) => M) | M
 });
 
 export default store;
