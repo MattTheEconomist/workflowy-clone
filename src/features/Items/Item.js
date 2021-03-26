@@ -13,15 +13,8 @@ export default function Item({ id }) {
   const contentCurrentItem = currentItem.content;
   const currentId = currentItem.id;
 
-  //do i need local state here? probs not
-  // const [text, setText] = useState(contentCurrentItem);
-
-  // const handleChange = (e) => setText(e.target.value);
-
   const handleChange = (e) => {
-    // console.log(currentId);
-    console.log(e.target.value);
-    // setText(e.target.value);
+    // console.log(e.target.value);
     dispatch(changeText({ content: e.target.value, currentId: currentId }));
   };
 
@@ -29,7 +22,6 @@ export default function Item({ id }) {
 
   const handleEnter = (e) => {
     if (e.key === "Enter") {
-      // console.log(currentId);
       dispatch(addItem({ content: "", parentId: currentId }));
     }
   };
