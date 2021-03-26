@@ -3,26 +3,36 @@ import { createStore, applyMiddleware, configureStore } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "redux-devtools-extension";
 import counterReducer from "../features/counter/counterSlice";
 import itemReducer from "../features/Items/ItemSlice";
-import itemTreeUpdate from "./middleware";
+import { itemTreeUpdate } from "./middleware";
 
-// works;
+// // works;
+
+// const mid = applyMiddleware(itemTreeUpdate);
 
 const store = configureStore({
   reducer: {
     item: itemReducer,
   },
+  // middlewares: [itemTreeUpdate],
+  // middleware: mid,
+  // middlewares: itemTreeUpdate,
+  // middleware?: ((getDefaultMiddleware: CurriedGetDefaultMiddleware<S>) => M) | M
 });
 
-// //simplified version
-// const composedEnhancer = composeWithDevTools(
-//   // Add whatever middleware you actually want to use here
-//   applyMiddleware(itemTreeUpdate)
-//   // other store enhancers if any
+// export const store = createStore(itemReducer, applyMiddleware(mid));
+
+// const store = createStore(
+//   itemReducer
+// ["Use Redux"]
+// applyMiddleware(itemTreeUpdate)
 // );
 
-// // const store = createStore(itemReducer, composedEnhancer);
-// const store = createStore(itemReducer);
-// export default store;
+//simplified version
+// const composedEnhancer = composeWithDevTools();
+// Add whatever middleware you actually want to use here
+// applyMiddleware(itemTreeUpdate)
+
+// const store = createStore(itemReducer, composedEnhancer);
 
 // does not work
 // const middlwareEnhancer = applyMiddleware([itemTreeUpdate])
