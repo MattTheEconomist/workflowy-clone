@@ -1,40 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
-<<<<<<< HEAD
 // import store from "../../structure/store";
-=======
-import store from "../../structure/store";
-
-// const idMapping = store.getState().item.itemList.reduce((acc, el, i) => {
-//   acc[el.id] = i;
-//   return acc;
-// }, {});
-
-// function treeUpdate(list) {
-//   let root;
-
-//   const idMapping = list.reduce((acc, el, i) => {
-//     acc[el.id] = i;
-//     return acc;
-//   }, {});
-
-//   // return idMapping;
-//   return [1, 2];
-
-//   return list.forEach((el) => {
-//     // Handle the root element
-//     if (el.parentId === null) {
-//       root = el;
-//       return;
-//     }
-
-//     // Use our mapping to locate the parent element in our data array
-//     const parentEl = list[idMapping[el.parentId]];
-//     // Add our current el to its parent's `children` array
-//     parentEl.children = [...(parentEl.children || []), el];
-//   });
-// }
->>>>>>> 1531da16265b447e2563bf757295a00b13e76dd9
 
 export const itemSlice = createSlice({
   name: "item",
@@ -52,7 +18,7 @@ export const itemSlice = createSlice({
         parentId: 0,
       },
     ],
-    // tree: { id: 0, parentId: null, children: [{ id: 1, parentId: 0 }] },
+    tree: { id: 0, parentId: null, children: [{ id: 1, parentId: 0 }] },
   },
 
   reducers: {
@@ -66,11 +32,15 @@ export const itemSlice = createSlice({
       state.itemList = [...state.itemList, newItem];
       state.idCount += 1;
 
-      // const list = state.itemList;
+      // let curentTree = state.tree;
 
-      // state.tree = treeUpdate(state.itemList);
-      // state.tree = { a: 1, b: 2 };
-      // state.tree = state.itemList.map((current) => current.id);
+      state.tree.children = [
+        ...state.tree.children,
+        newItem,
+        // state.tree.children
+        //   .filter((item) => item.id === newItem.parentId)
+        //   .push(newItem),
+      ];
     },
     changeText: (state, action) => {
       const { content, currentId } = action.payload;
